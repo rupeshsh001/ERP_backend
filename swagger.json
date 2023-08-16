@@ -1,0 +1,175 @@
+{
+    "swagger": "2.0",
+  
+    "host": "localhost:3030",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "PMO",
+        "description": "API for PMO in the system"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+  
+    "paths": {
+      "/projects": {
+        "post": {
+          "tags": [
+            "Projects"
+          ],
+          "description": "Create new Project in system",
+          "parameters": [
+            {
+              "name": "project",
+              "in": "body",
+              "description": "Project that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "New Project is created",
+              "schema": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Projects"
+          ],
+          "summary": "Get all projects in system",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        }
+      },
+      "/projects/{projectId}": {
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": [
+            "Projects"
+          ],
+          "summary": "Get project with given ID",
+          "responses": {
+            "200": {
+              "description": "Projects is found",
+              "schema": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        },
+  
+        "put": {
+          "summary": "Update project with give ID",
+          "tags": [
+            "Projects"
+          ],
+          "parameters": [
+            {
+              "name": "project",
+              "in": "body",
+              "description": "Project with new values of properties",
+              "schema": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Project is updated",
+              "schema": {
+                "$ref": "#/definitions/Project"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Project": {
+        "required": [
+          "clientName",
+          "projectName",
+          "clientProjectManager",
+          "startDate",
+          "endDate",
+          "clientProjectSponser",
+          "clientFinanceController",
+          "vbProjectManager"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "vbProjectId": {
+            "type": "string"
+          },
+          "clientName": {
+            "type": "string"
+          },
+          "projectName": {
+            "type": "string"
+          },
+          "clientProjectManager": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "clientProjectSponser": {
+            "type": "string"
+          },
+          "clientFinanceController": {
+            "type": "string"
+          },
+          "clientPrimaryContact": {
+            "type": "number"
+          },
+          "vbProjectManager": {
+            "type": "string"
+          },
+          "domainSector": {
+            "type": "string"
+          },
+          "vbProjectStatus": {
+            "type": "string"
+          }
+  
+        }
+      }
+    }
+  }
+  
